@@ -1,0 +1,24 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+   <%= link_to 'Home', root_path, class: 'navbar-brand' %>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+      <% if current_agency.present? %>
+        <li class="nav-item">
+          <%= link_to destroy_agency_session_path, method: :delete, class: 'sign-out-top-nav dropdown-item' do %>
+            <i class="fas fa-sign-out-alt"></i> <%=t :logout %>
+          <% end %>
+        </li>
+      <% else %>
+        <li class="nav-item">
+          <%= link_to new_agency_session_path, class: 'sign-out-top-nav dropdown-item' do %>
+            <i class="fas fa-sign-out-alt"></i> <%=t :login %>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</nav>
