@@ -117,15 +117,16 @@ Rails.application.configure do
   # config.active_record.database_selector = { delay: 2.seconds }
   # config.active_record.database_resolver = ActiveRecord::Middleware::DatabaseSelector::Resolver
   # config.active_record.database_resolver_context = ActiveRecord::Middleware::DatabaseSelector::Resolver::Session
-  config.action_mailer.default_url_options = { host: 'better-set-go.herokuapp.com' }
   config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = {
-    :user_name => Rails.application.credentials[:SENDGRID_USERNAME],
-    :password => Rails.application.credentials[:SENDGRID_PASSWORD],
-    :domain => 'better-set-go.herokuapp.com',
-    :address => 'smtp.sendgrid.net',
-    :port => 587,
-    :authentication => :plain,
-    :enable_starttls_auto => true
+  config.action_mailer.default_url_options = { protocol: 'http', host: 'better-set-go.herokuapp.com' }
+
+  # SMTP settings for sendgrid
+  ActionMailer::Base.smtp_settings = {
+    domain: 'better-set-go.herokuapp.com',
+    address:        "smtp.sendgrid.net",
+    port:            587,
+    authentication: :plain,
+    user_name:      'apikey',
+    password:       Rails.application.credentials[Rails.env.to_sym][:sendgrid_api_key]
   }
 end
