@@ -120,8 +120,8 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: 'better-set-go.herokuapp.com' }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    :user_name => ENV['SENDGRID_USERNAME'],
-    :password => ENV['SENDGRID_PASSWORD'],
+    :user_name => Rails.application.credentials[:SENDGRID_USERNAME],
+    :password => Rails.application.credentials[:SENDGRID_PASSWORD],
     :domain => 'better-set-go.herokuapp.com',
     :address => 'smtp.sendgrid.net',
     :port => 587,
